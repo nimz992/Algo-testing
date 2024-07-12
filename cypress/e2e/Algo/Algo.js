@@ -31,7 +31,6 @@ Then("Right Search", () => {
     cy.wait(15000)
    //cy.get('[id="Panel - 00"] app-dynamic-message > .ng-star-inserted > div').should('not.contain','I am sorry');
    cy.get('[id="Panel - 01"] app-dynamic-message').should('not.exist');
-    
 });
 
 
