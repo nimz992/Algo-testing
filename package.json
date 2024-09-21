@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:open": "cypress open",
+    "cy:open": "cypress open",
     "clean:reports": "if exist cypress\\reports rmdir /S/Q cypress\\reports",
     "pretest": "npm run clean:reports",
     "scripts": "cypress run",
     "posttest": "node cucumber-html-report.js",
-    "test": "npm run scripts || npm run posttest"
+    "cy:run": "npm run scripts || npm run posttest"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +21,7 @@
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinition": true,
-    "step_definitions": "cypress/e2e/Algo",
+    "step_definitions": "cypress/e2e/StepDefinition",
     "cucumberJson": {
       "generate": true,
       "outputFolder": "cypress/reports/cucumber-json",
