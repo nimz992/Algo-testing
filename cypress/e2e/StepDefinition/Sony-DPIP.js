@@ -42,17 +42,23 @@ Then("User waits for 'Hect Dashboard' Response", () => {
   });
 });
 
-// ----------------------------- 'list transit times' Ask ------------------------------------
-
-When("User ask 'list transit times'", () => {
-  cy.get("#mat-input-0", {
-    timeout: 10000,
-  }).type(`list transit times{enter}`);
+When("User click edit button of first row", () => {
+  cy.get('[row-id="0"] [col-id="edit"] div').click();
 });
 
-Then("User waits for 'list transit times' Response", () => {
+When("User click add button of first row", () => {
+  cy.get(
+    "app-dynamic-grid[class='ng-star-inserted'] button[class='mat-focus-indicator me-1 mat-raised-button mat-button-base ng-star-inserted']"
+  ).click();
+});
+
+When("User click delete button of first row", () => {
+  cy.get('[row-id="0"] [col-id="delete"] div').click();
+});
+
+Then("User waits for 'Edit' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+  cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
     timeout: 500000,
   }).then(($body) => {
     // Check if app-dynamic-message is displayed.
@@ -68,13 +74,53 @@ Then("User waits for 'list transit times' Response", () => {
   });
 });
 
-When("User click edit button of first row", () => {
-  cy.get('[row-id="0"] [col-id="edit"] div').click();
+Then("User waits for 'Add' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 03"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
 });
 
-Then("User waits for 'Edit' Response", () => {
+Then("User waits for 'Delete' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
+  cy.get(`[id="Panel - 04"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});
+
+// ----------------------------- 'list transit times' Ask ------------------------------------
+
+When("User ask 'list transit times'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list transit times{enter}`);
+});
+
+Then("User waits for 'list transit times' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
     timeout: 500000,
   }).then(($body) => {
     // Check if app-dynamic-message is displayed.
@@ -109,4 +155,28 @@ Then("User wait for 'transit times added successful' response", () => {
   ).contains("Your transit times have been added!");
 });
 
-// ---------------------------------------------------------------------------------------
+// ---------------------------- List Mod Reset Curve ------------------------------
+
+When("User ask 'list mod reset curve'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list mod reset curve{enter}`);
+});
+
+Then("User waits for 'list mod reset curve' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});

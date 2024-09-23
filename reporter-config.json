@@ -1,0 +1,12 @@
+{
+    "reporterEnabled": "spec, mocha-junit-reporter, cypress-multi-reporters",
+    "cypress-multi-reporters": {
+        "reporterEnabled": "cucumber-json",
+        "cucumber-json-reporter": {
+            "output": "cypress/reports/cucumber-json"
+        }
+    },
+    "mochaJunitReporterReporterOptions": {
+        "mochaFile": "cypress/reports/junit/test-results-[hash].xml"
+    }
+}
