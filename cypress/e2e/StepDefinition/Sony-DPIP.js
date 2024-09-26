@@ -180,3 +180,125 @@ Then("User waits for 'list mod reset curve' Response", () => {
     }
   });
 });
+
+// ------------------------- List Safety Stock ----------------------------------
+
+When("User ask 'list safety stock'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list safety stock{enter}`);
+});
+
+Then("User waits for 'list safety stock' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});
+
+// ----------------------------- rmplan poststreet -----------------------------------
+
+When("User ask 'rmplan poststreet'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`rmplan poststreet{enter}`);
+});
+
+Then("User waits for 'rmplan poststreet' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});
+
+var confirmation = true;
+
+When("User click confirmation button of first row", () => {
+  cy.get('[row-id="0"] [col-id="confirmation"] div').then(($body) => {
+    if ($body.find("button").length > 0) {
+      cy.wrap($body).click();
+    } else {
+      confirmation = false;
+      cy.log("Button Not found");
+    }
+  });
+});
+
+var overwride = true;
+
+When("User click overwride button of first row", () => {
+  cy.get('[row-id="0"] [col-id="edit"] div').then(($body) => {
+    if ($body.find("button").length > 0) {
+      cy.wrap($body).click();
+    } else {
+      overwride = false;
+      cy.log("Button Not found");
+    }
+  });
+});
+
+Then("User waits for 'Confirmation' Response", () => {
+  if (confirmation) {
+    // Checks app-dynamic-tabs for response.
+    cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
+      // Check if app-dynamic-message is displayed.
+      if ($body.find("app-dynamic-message").length > 0) {
+        // Check if app-dynamic-message has text "I am sorry".
+        cy.wrap($body)
+          .find("app-dynamic-message div div", { timeout: 1000 })
+          .should("not.contain", "I am sorry");
+      } else {
+        // Pass the test if the error message is not found
+        cy.log("No error message element found, test passed.");
+      }
+    });
+  } else {
+    cy.log("Confirmation button not found, skipped.");
+  }
+});
+
+Then("User waits for 'Overwride' Response", () => {
+  if (confirmation) {
+    // Checks app-dynamic-tabs for response.
+    cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
+      // Check if app-dynamic-message is displayed.
+      if ($body.find("app-dynamic-message").length > 0) {
+        // Check if app-dynamic-message has text "I am sorry".
+        cy.wrap($body)
+          .find("app-dynamic-message div div", { timeout: 1000 })
+          .should("not.contain", "I am sorry");
+      } else {
+        // Pass the test if the error message is not found
+        cy.log("No error message element found, test passed.");
+      }
+    });
+  } else {
+    cy.log("Confirmation button not found, skipped.");
+  }
+});

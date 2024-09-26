@@ -1,5 +1,6 @@
 Feature: Test Asks in Sony DPIP
 
+    @ValidCredentials
     Scenario Outline: Ask Response
         Given User Login as SDS
         Then User Checks page has loaded
