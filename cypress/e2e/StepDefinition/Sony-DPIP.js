@@ -16,7 +16,7 @@ Then("User waits for 'What's Trending' Response", () => {
   });
 });
 
-// -------------------------------------------------------------------------------------------
+// -------------------- Common Step Definition ------------------------------------------
 
 When("User ask 'hect dashboard'", () => {
   cy.get("#mat-input-0", {
@@ -109,6 +109,78 @@ Then("User waits for 'Delete' Response", () => {
     }
   });
 });
+
+var confirmation = true;
+
+When("User click confirmation button of first row", () => {
+  cy.get('[row-id="0"] [col-id="confirmation"] div').then(($body) => {
+    if ($body.find("button").length > 0) {
+      cy.wrap($body).click();
+    } else {
+      confirmation = false;
+      cy.log("Button Not found");
+    }
+  });
+});
+
+var overwride = true;
+
+When("User click overwride button of first row", () => {
+  cy.get('[row-id="0"] [col-id="edit"] div').then(($body) => {
+    if ($body.find("button").length > 0) {
+      cy.wrap($body).click();
+    } else {
+      overwride = false;
+      cy.log("Button Not found");
+    }
+  });
+});
+
+Then("User waits for 'Confirmation' Response", () => {
+  if (confirmation) {
+    // Checks app-dynamic-tabs for response.
+    cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
+      // Check if app-dynamic-message is displayed.
+      if ($body.find("app-dynamic-message").length > 0) {
+        // Check if app-dynamic-message has text "I am sorry".
+        cy.wrap($body)
+          .find("app-dynamic-message div div", { timeout: 1000 })
+          .should("not.contain", "I am sorry");
+      } else {
+        // Pass the test if the error message is not found
+        cy.log("No error message element found, test passed.");
+      }
+    });
+  } else {
+    cy.log("Confirmation button not found, skipped.");
+  }
+});
+
+Then("User waits for 'Overwride' Response", () => {
+  if (overwride) {
+    // Checks app-dynamic-tabs for response.
+    cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
+      // Check if app-dynamic-message is displayed.
+      if ($body.find("app-dynamic-message").length > 0) {
+        // Check if app-dynamic-message has text "I am sorry".
+        cy.wrap($body)
+          .find("app-dynamic-message div div", { timeout: 1000 })
+          .should("not.contain", "I am sorry");
+      } else {
+        // Pass the test if the error message is not found
+        cy.log("No error message element found, test passed.");
+      }
+    });
+  } else {
+    cy.log("Confirmation button not found, skipped.");
+  }
+});
+
+// ----------------------------- End of common Step Definition -------------------------------
 
 // ----------------------------- 'list transit times' Ask ------------------------------------
 
@@ -233,72 +305,203 @@ Then("User waits for 'rmplan poststreet' Response", () => {
   });
 });
 
-var confirmation = true;
+// ------------------------- list future promo replen curves -------------------------
 
-When("User click confirmation button of first row", () => {
-  cy.get('[row-id="0"] [col-id="confirmation"] div').then(($body) => {
-    if ($body.find("button").length > 0) {
-      cy.wrap($body).click();
+When("User ask 'list future promo replen curves'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list future promo replen curves{enter}`);
+});
+
+Then("User waits for 'list future promo replen curves' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
     } else {
-      confirmation = false;
-      cy.log("Button Not found");
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
     }
   });
 });
 
-var overwride = true;
+Then("User change week 1 ship override", () => {
+  cy.get(":nth-child(5) > .form-group > .ng-untouched").clear().type("0.0336");
+});
 
-When("User click overwride button of first row", () => {
-  cy.get('[row-id="0"] [col-id="edit"] div').then(($body) => {
-    if ($body.find("button").length > 0) {
-      cy.wrap($body).click();
+Then("User save", () => {
+  cy.get(".w-100.align-items-start > .mat-focus-indicator").click();
+});
+
+// ----------------------------- Rmplan catalog ------------------------------
+
+When("User ask 'rmplan catalog'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`rmplan catalog{enter}`);
+});
+
+Then("User waits for 'rmplan catalog' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
     } else {
-      overwride = false;
-      cy.log("Button Not found");
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
     }
   });
 });
 
-Then("User waits for 'Confirmation' Response", () => {
-  if (confirmation) {
-    // Checks app-dynamic-tabs for response.
-    cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
-      timeout: 500000,
-    }).then(($body) => {
-      // Check if app-dynamic-message is displayed.
-      if ($body.find("app-dynamic-message").length > 0) {
-        // Check if app-dynamic-message has text "I am sorry".
-        cy.wrap($body)
-          .find("app-dynamic-message div div", { timeout: 1000 })
-          .should("not.contain", "I am sorry");
-      } else {
-        // Pass the test if the error message is not found
-        cy.log("No error message element found, test passed.");
-      }
-    });
-  } else {
-    cy.log("Confirmation button not found, skipped.");
-  }
+// ------------------------- list bom cost surcharges -------------------------
+
+When("User ask 'list bom cost surcharges'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list bom cost surcharges{enter}`);
 });
 
-Then("User waits for 'Overwride' Response", () => {
-  if (confirmation) {
-    // Checks app-dynamic-tabs for response.
-    cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
-      timeout: 500000,
-    }).then(($body) => {
-      // Check if app-dynamic-message is displayed.
-      if ($body.find("app-dynamic-message").length > 0) {
-        // Check if app-dynamic-message has text "I am sorry".
-        cy.wrap($body)
-          .find("app-dynamic-message div div", { timeout: 1000 })
-          .should("not.contain", "I am sorry");
-      } else {
-        // Pass the test if the error message is not found
-        cy.log("No error message element found, test passed.");
-      }
-    });
-  } else {
-    cy.log("Confirmation button not found, skipped.");
-  }
+Then("User waits for 'list bom cost surcharges' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});
+
+Then("User change Surcharge Cost", () => {
+  cy.get(":nth-child(2) > .form-group > .ng-untouched").clear().type("200");
+});
+
+Then("User click Edit BOM Cost Surcharge", () => {
+  cy.get(".w-100.align-items-start > .mat-focus-indicator").click();
+});
+
+// ----------------------------------- list vendors ------------------------------
+
+When("User ask 'list vendors'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list vendors{enter}`);
+});
+
+Then("User waits for 'list vendors' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});
+
+Then("User change Vendor Name", () => {
+  cy.get(":nth-child(2) > .form-group > .ng-untouched")
+    .clear()
+    .type("UNIVERSAL/CLICKII");
+});
+
+Then("User click Edit Vendor", () => {
+  cy.get(".w-100.align-items-start > .mat-focus-indicator").click();
+});
+
+// ---------------------- list bom cost overrides ---------------------------
+
+When("User ask 'list bom cost overrides'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list bom cost overrides{enter}`);
+});
+
+Then("User waits for 'list bom cost overrides' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});
+
+Then("User change value of 'cost'", () => {
+  cy.get("#pr_id_1_label").click();
+  cy.get(":nth-child(2) > .p-ripple").click();
+});
+
+Then("User click Edit Bom Cost Overrides buton", () => {
+  cy.get(".w-100.align-items-start > .mat-focus-indicator").click();
+});
+
+// ------------------------- list dc -----------------------------
+
+When("User ask 'list dc'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list dc{enter}`);
+});
+
+Then("User waits for 'list dc' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});
+
+Then("User change value of DC name", () => {
+  cy.get(":nth-child(2) > .form-group > .ng-untouched")
+    .clear()
+    .type("RANK VIDEO SERVICES, INC.");
+});
+
+Then("User click Edit DC button", () => {
+  cy.get(".w-100.align-items-start > .mat-focus-indicator").click();
 });
