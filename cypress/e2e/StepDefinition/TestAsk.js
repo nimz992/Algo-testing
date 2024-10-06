@@ -1,11 +1,19 @@
 import { Given, Then, When } from "cypress-cucumber-preprocessor/steps";
 
-Given("User Login as SDS", () => {
+Given("User Login as SONY-DPIP", () => {
   cy.fixture("credential").then((user) => {
-    cy.loginAsSDS(user.email, user.password);
+    cy.loginAsDPIP(user.email, user.password);
   });
 
   cy.visit("https://algocore-uat.algoplus.com/home");
+});
+
+Then("User waits for 'What's Trending' Response", () => {
+  cy.title().should("eq", "Algo - Creative Intelligence");
+  cy.url().should("include", "/home");
+  cy.get(`[id="Panel - 00"] app-dynamic-tabs`, {
+    timeout: 200000,
+  });
 });
 
 Then("User Checks page has loaded", () => {
@@ -13,15 +21,15 @@ Then("User Checks page has loaded", () => {
   cy.url().should("include", "/home");
 });
 
-When("User enters Ask: {string}", async (ASK) => {
+When(`User enters Ask: {string}`, async (ASK) => {
   cy.get("#mat-input-0", {
     timeout: 10000,
   }).type(`${ASK}{enter}`);
 });
 
 Then("User checks for response", () => {
-  cy.get(`[id="Panel - 00"] app-dynamic-tabs`, {
-    timeout: 10000,
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
   }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {

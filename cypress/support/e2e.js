@@ -35,7 +35,7 @@ afterEach(() => {
 
       const screenshotFileName = `${testState.feature.name} -- ${scenarioName} (failed).png`;
 
-      cy.wait(5000);
+      cy.wait(1000);      //Time to save file before read.
       cy.readFile(
         `${screenshotsFolder}/${Cypress.spec.name}/${screenshotFileName}`,
         "base64"
