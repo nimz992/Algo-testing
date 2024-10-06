@@ -505,3 +505,200 @@ Then("User change value of DC name", () => {
 Then("User click Edit DC button", () => {
   cy.get(".w-100.align-items-start > .mat-focus-indicator").click();
 });
+
+// ----------------------- list finished good lead times -----------------------------
+
+When("User ask 'list finished good lead times'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list finished good lead times{enter}`);
+});
+
+Then("User waits for 'list finished good lead times' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});
+
+When("User click 'add finished good lead time'", () => {
+  cy.get("div[class='ng-star-inserted'] div ul li question").click();
+});
+
+Then("User waits for 'add finished good lead time' Response", () => {
+  cy.get("#mat-tab-label-2-0", { timeout: 20000 });
+});
+
+// -------------------- list raw material subclass lead times ----------------------
+
+When("User ask 'list raw material subclass lead times'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list raw material subclass lead times{enter}`);
+});
+
+Then("User waits for 'list raw material subclass lead times' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});
+
+When("User click 'add raw material subclass lead times'", () => {
+  cy.get("question").click({ force: true });
+});
+
+Then("User waits for 'add raw material subclass lead times' Response", () => {
+  cy.get("#mat-tab-label-2-0", { timeout: 20000 });
+});
+
+// -------------------- list strategic forecast mod reset curve ----------------------
+
+When("User ask 'list strategic forecast mod reset curve'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list strategic forecast mod reset curve{enter}`);
+});
+
+Then(
+  "User waits for 'list strategic forecast mod reset curve' Response",
+  () => {
+    // Checks app-dynamic-tabs for response.
+    cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
+      // Check if app-dynamic-message is displayed.
+      if ($body.find("app-dynamic-message").length > 0) {
+        // Check if app-dynamic-message has text "I am sorry".
+        cy.wrap($body)
+          .find("app-dynamic-message div div", { timeout: 1000 })
+          .should("not.contain", "I am sorry");
+      } else {
+        // Pass the test if the error message is not found
+        cy.log("No error message element found, test passed.");
+      }
+    });
+  }
+);
+
+// -------------------- list safety stock ----------------------
+
+When("User ask 'list safety stock'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list safety stock{enter}`);
+});
+
+Then("User waits for 'list safety stock' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});
+
+// -------------------- list catalog wo ship to ----------------------
+
+When("User ask 'list catalog wo ship to'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list catalog wo ship to{enter}`);
+});
+
+Then("User waits for 'list catalog wo ship to' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});
+
+When("User click 'Add'", () => {
+  cy.get(
+    "app-dynamic-grid.ng-star-inserted > app-dynamic-buttons > .row > :nth-child(1) > .mat-focus-indicator"
+  ).click();
+});
+
+Then("User waits for 'Add' Response", () => {
+  cy.get("#mat-tab-label-3-0", { timeout: 10000 });
+});
+
+Then("User click 'Add list Catalog Work Order Ship To' Button", () => {
+  cy.get(
+    "#mat-tab-content-3-0 > .mat-tab-body-content > .m-0 > .col-12 > app-dynamic-form.ng-star-inserted > .p-2 > .w-100.align-items-start > .mat-focus-indicator"
+  ).click();
+});
+
+// -------------------- list nr wo ship to ----------------------
+
+When("User ask 'list nr wo ship to'", () => {
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list nr wo ship to{enter}`);
+});
+
+Then("User waits for 'list nr wo ship to' Response", () => {
+  // Checks app-dynamic-tabs for response.
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
+    // Check if app-dynamic-message is displayed.
+    if ($body.find("app-dynamic-message").length > 0) {
+      // Check if app-dynamic-message has text "I am sorry".
+      cy.wrap($body)
+        .find("app-dynamic-message div div", { timeout: 1000 })
+        .should("not.contain", "I am sorry");
+    } else {
+      // Pass the test if the error message is not found
+      cy.log("No error message element found, test passed.");
+    }
+  });
+});
+
+Then("User click 'Add NR WO Ship To' Button", () => {
+  cy.get(
+    "#mat-tab-content-3-0 > .mat-tab-body-content > .m-0 > .col-12 > app-dynamic-form.ng-star-inserted > .p-2 > .w-100.align-items-start > .mat-focus-indicator"
+  ).click();
+});
