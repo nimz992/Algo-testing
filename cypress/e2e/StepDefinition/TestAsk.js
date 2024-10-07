@@ -1,14 +1,6 @@
 import { Given, Then, When } from "cypress-cucumber-preprocessor/steps";
 
-var times = 0;
-
 Given("User Login as SONY-DPIP", () => {
-  if (times === 10) {
-    cy.log("Clearing Session");
-    cy.clearAllSessionStorage();
-    times = 0;
-  }
-  times++;
   cy.fixture("credential").then((user) => {
     cy.loginAsDPIP(user.email, user.password);
   });
