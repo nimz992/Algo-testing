@@ -21,5 +21,7 @@ report.generate({
       { label: "Release", value: "1.0.0" },
       { label: "Execution Date", value: new Date().toLocaleString() },
     ],
+    displayDuration: true,
+    displayReportTime: true,
   },
 });
