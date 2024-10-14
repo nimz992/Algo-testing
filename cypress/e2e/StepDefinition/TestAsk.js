@@ -11,9 +11,7 @@ Given("User Login as SONY-DPIP", () => {
 Then("User waits for 'What's Trending' Response", () => {
   cy.title().should("eq", "Algo - Creative Intelligence");
   cy.url().should("include", "/home");
-  cy.get(`[id="Panel - 00"] app-dynamic-tabs`, {
-    timeout: 200000,
-  });
+  cy.get(`[id="Panel - 00"] app-dynamic-tabs`);
 });
 
 Then("User Checks page has loaded", () => {
@@ -22,20 +20,16 @@ Then("User Checks page has loaded", () => {
 });
 
 When(`User enters Ask: {string}`, async (ASK) => {
-  cy.get("#mat-input-0", {
-    timeout: 10000,
-  }).type(`${ASK}{enter}`);
+  cy.get("#mat-input-0").type(`${ASK}{enter}`);
 });
 
 Then("User checks for response", () => {
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
-    timeout: 500000,
-  }).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div", { timeout: 1000 })
+        .find("app-dynamic-message div div")
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found

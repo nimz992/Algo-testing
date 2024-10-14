@@ -1,6 +1,6 @@
-Feature: Test Asks in Sony DPIP Session 4
+Feature: Simple ask 'Folder 4'
 
-    Scenario Outline: Ask Response
+    Scenario Outline: Simple ask: '<ASK>'
         Given User Login as SONY-DPIP
         Then User waits for 'What's Trending' Response
         Then User Checks page has loaded

@@ -1,4 +1,4 @@
-Feature: TSony-DPIP Data Modification Asks Session 2
+Feature: Ask with steps 'Folder 2'
 
     Scenario: list finished good lead times
         Given User Login as Sony-DPIP

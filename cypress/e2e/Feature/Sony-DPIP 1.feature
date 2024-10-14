@@ -1,4 +1,4 @@
-Feature: TSony-DPIP Data Modification Asks Session 1
+Feature: Ask with steps 'Folder 1'
 
     Scenario: List Transit Times
         Given User Login as Sony-DPIP
