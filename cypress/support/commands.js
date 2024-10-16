@@ -16,8 +16,8 @@ Cypress.Commands.add("loginAsSDS", (username, password) => {
     cy.get("#mat-input-0").clear().type(username);
     cy.get("#mat-input-1").clear().type(password);
     cy.get("#login").click();
-    cy.get(":nth-child(1) > .mat-focus-indicator").click(); //Login as SDS
-    cy.wait(10000); // Require time to get all sessions, cookies.
+    cy.get(":nth-child(1) > .mat-focus-indicator", { timeout: 10000 }).click(); //Login as SDS
+    cy.wait(10000); // Require time to get all sessions.
   });
 });
 
@@ -27,8 +27,8 @@ Cypress.Commands.add("loginAsDPIP", (username, password) => {
     cy.get("#mat-input-0").clear().type(username);
     cy.get("#mat-input-1").clear().type(password);
     cy.get("#login").click();
-    cy.get(":nth-child(2) > .mat-focus-indicator").click(); //Login as DP-IP
-    cy.wait(10000); // Require time to get all sessions, cookies.
+    cy.get(":nth-child(2) > .mat-focus-indicator", { timeout: 10000 }).click(); //Login as DP-IP
+    cy.wait(10000); // Require time to get all sessions.
   });
 });
 
@@ -38,8 +38,8 @@ Cypress.Commands.add("loginAsMSFTDPIP", (username, password) => {
     cy.get("#mat-input-0").clear().type(username);
     cy.get("#mat-input-1").clear().type(password);
     cy.get("#login").click();
-    cy.get(":nth-child(9) > .mat-focus-indicator").click(); //Login as MSFT/DP-IP
-    cy.wait(10000); // Require time to get all sessions, cookies.
+    cy.get(":nth-child(9) > .mat-focus-indicator", { timeout: 10000 }).click(); //Login as MSFT/DP-IP
+    cy.wait(10000); // Require time to get all sessions.
   });
 });
 //

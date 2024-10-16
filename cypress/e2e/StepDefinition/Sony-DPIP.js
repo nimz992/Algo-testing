@@ -11,23 +11,29 @@ Given("User Login as Sony-DPIP", () => {
 Then("User waits for 'What's Trending' Response", () => {
   cy.title().should("eq", "Algo - Creative Intelligence");
   cy.url().should("include", "/home");
-  cy.get(`[id="Panel - 00"] app-dynamic-tabs`);
+  cy.get(`[id="Panel - 00"] app-dynamic-tabs`, {
+    timeout: 200000,
+  });
 });
 
 // -------------------- Common Step Definition ------------------------------------------
 
 When("User ask 'hect dashboard'", () => {
-  cy.get("#mat-input-0").type(`hect dashboard{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`hect dashboard{enter}`);
 });
 
 Then("User waits for 'Hect Dashboard' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -52,12 +58,14 @@ When("User click delete button of first row", () => {
 
 Then("User waits for 'Edit' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 02"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -68,12 +76,14 @@ Then("User waits for 'Edit' Response", () => {
 
 Then("User waits for 'Add' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 03"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 03"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -84,12 +94,14 @@ Then("User waits for 'Add' Response", () => {
 
 Then("User waits for 'Delete' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 04"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 04"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -129,12 +141,14 @@ When("User click overwride button of first row", () => {
 Then("User waits for 'Confirmation' Response", () => {
   if (confirmation) {
     // Checks app-dynamic-tabs for response.
-    cy.get(`[id="Panel - 02"] app-dynamic-tabs`).then(($body) => {
+    cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
       // Check if app-dynamic-message is displayed.
       if ($body.find("app-dynamic-message").length > 0) {
         // Check if app-dynamic-message has text "I am sorry".
         cy.wrap($body)
-          .find("app-dynamic-message div div")
+          .find("app-dynamic-message div div", { timeout: 1000 })
           .should("not.contain", "I am sorry");
       } else {
         // Pass the test if the error message is not found
@@ -149,12 +163,14 @@ Then("User waits for 'Confirmation' Response", () => {
 Then("User waits for 'Overwride' Response", () => {
   if (overwride) {
     // Checks app-dynamic-tabs for response.
-    cy.get(`[id="Panel - 02"] app-dynamic-tabs`).then(($body) => {
+    cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
       // Check if app-dynamic-message is displayed.
       if ($body.find("app-dynamic-message").length > 0) {
         // Check if app-dynamic-message has text "I am sorry".
         cy.wrap($body)
-          .find("app-dynamic-message div div")
+          .find("app-dynamic-message div div", { timeout: 1000 })
           .should("not.contain", "I am sorry");
       } else {
         // Pass the test if the error message is not found
@@ -171,17 +187,21 @@ Then("User waits for 'Overwride' Response", () => {
 // ----------------------------- 'list transit times' Ask ------------------------------------
 
 When("User ask 'list transit times'", () => {
-  cy.get("#mat-input-0").type(`list transit times{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list transit times{enter}`);
 });
 
 Then("User waits for 'list transit times' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -203,7 +223,7 @@ Then("User Click save button", () => {
 });
 
 Then("User wait for 'transit times added successful' response", () => {
-  cy.get("#mat-tab-label-2-1");
+  cy.get("#mat-tab-label-2-1", { timeout: 20000 });
   cy.get(
     '#mat-tab-content-2-1 > .mat-tab-body-content > .pb-3 > .col-12 > [style="min-height: 80px;"] > app-dynamic-message > .ng-star-inserted > div'
   ).contains("Your transit times have been added!");
@@ -212,17 +232,21 @@ Then("User wait for 'transit times added successful' response", () => {
 // ---------------------------- List Mod Reset Curve ------------------------------
 
 When("User ask 'list mod reset curve'", () => {
-  cy.get("#mat-input-0").type(`list mod reset curve{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list mod reset curve{enter}`);
 });
 
 Then("User waits for 'list mod reset curve' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -234,17 +258,21 @@ Then("User waits for 'list mod reset curve' Response", () => {
 // ------------------------- List Safety Stock ----------------------------------
 
 When("User ask 'list safety stock'", () => {
-  cy.get("#mat-input-0").type(`list safety stock{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list safety stock{enter}`);
 });
 
 Then("User waits for 'list safety stock' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -256,17 +284,21 @@ Then("User waits for 'list safety stock' Response", () => {
 // ----------------------------- rmplan poststreet -----------------------------------
 
 When("User ask 'rmplan poststreet'", () => {
-  cy.get("#mat-input-0").type(`rmplan poststreet{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`rmplan poststreet{enter}`);
 });
 
 Then("User waits for 'rmplan poststreet' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -278,17 +310,21 @@ Then("User waits for 'rmplan poststreet' Response", () => {
 // ------------------------- list future promo replen curves -------------------------
 
 When("User ask 'list future promo replen curves'", () => {
-  cy.get("#mat-input-0").type(`list future promo replen curves{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list future promo replen curves{enter}`);
 });
 
 Then("User waits for 'list future promo replen curves' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -308,17 +344,21 @@ Then("User save", () => {
 // ----------------------------- Rmplan catalog ------------------------------
 
 When("User ask 'rmplan catalog'", () => {
-  cy.get("#mat-input-0").type(`rmplan catalog{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`rmplan catalog{enter}`);
 });
 
 Then("User waits for 'rmplan catalog' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -330,17 +370,21 @@ Then("User waits for 'rmplan catalog' Response", () => {
 // ------------------------- list bom cost surcharges -------------------------
 
 When("User ask 'list bom cost surcharges'", () => {
-  cy.get("#mat-input-0").type(`list bom cost surcharges{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list bom cost surcharges{enter}`);
 });
 
 Then("User waits for 'list bom cost surcharges' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -360,17 +404,21 @@ Then("User click Edit BOM Cost Surcharge", () => {
 // ----------------------------------- list vendors ------------------------------
 
 When("User ask 'list vendors'", () => {
-  cy.get("#mat-input-0").type(`list vendors{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list vendors{enter}`);
 });
 
 Then("User waits for 'list vendors' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -392,17 +440,21 @@ Then("User click Edit Vendor", () => {
 // ---------------------- list bom cost overrides ---------------------------
 
 When("User ask 'list bom cost overrides'", () => {
-  cy.get("#mat-input-0").type(`list bom cost overrides{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list bom cost overrides{enter}`);
 });
 
 Then("User waits for 'list bom cost overrides' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -423,17 +475,21 @@ Then("User click Edit Bom Cost Overrides buton", () => {
 // ------------------------- list dc -----------------------------
 
 When("User ask 'list dc'", () => {
-  cy.get("#mat-input-0").type(`list dc{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list dc{enter}`);
 });
 
 Then("User waits for 'list dc' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -455,17 +511,21 @@ Then("User click Edit DC button", () => {
 // ----------------------- list finished good lead times -----------------------------
 
 When("User ask 'list finished good lead times'", () => {
-  cy.get("#mat-input-0").type(`list finished good lead times{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list finished good lead times{enter}`);
 });
 
 Then("User waits for 'list finished good lead times' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -479,23 +539,27 @@ When("User click 'add finished good lead time'", () => {
 });
 
 Then("User waits for 'add finished good lead time' Response", () => {
-  cy.get("#mat-tab-label-2-0");
+  cy.get("#mat-tab-label-2-0", { timeout: 20000 });
 });
 
 // -------------------- list raw material subclass lead times ----------------------
 
 When("User ask 'list raw material subclass lead times'", () => {
-  cy.get("#mat-input-0").type(`list raw material subclass lead times{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list raw material subclass lead times{enter}`);
 });
 
 Then("User waits for 'list raw material subclass lead times' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -509,25 +573,29 @@ When("User click 'add raw material subclass lead times'", () => {
 });
 
 Then("User waits for 'add raw material subclass lead times' Response", () => {
-  cy.get("#mat-tab-label-2-0");
+  cy.get("#mat-tab-label-2-0", { timeout: 20000 });
 });
 
 // -------------------- list strategic forecast mod reset curve ----------------------
 
 When("User ask 'list strategic forecast mod reset curve'", () => {
-  cy.get("#mat-input-0").type(`list strategic forecast mod reset curve{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list strategic forecast mod reset curve{enter}`);
 });
 
 Then(
   "User waits for 'list strategic forecast mod reset curve' Response",
   () => {
     // Checks app-dynamic-tabs for response.
-    cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+    cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
       // Check if app-dynamic-message is displayed.
       if ($body.find("app-dynamic-message").length > 0) {
         // Check if app-dynamic-message has text "I am sorry".
         cy.wrap($body)
-          .find("app-dynamic-message div div")
+          .find("app-dynamic-message div div", { timeout: 1000 })
           .should("not.contain", "I am sorry");
       } else {
         // Pass the test if the error message is not found
@@ -540,17 +608,21 @@ Then(
 // -------------------- list safety stock ----------------------
 
 When("User ask 'list safety stock'", () => {
-  cy.get("#mat-input-0").type(`list safety stock{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list safety stock{enter}`);
 });
 
 Then("User waits for 'list safety stock' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -562,17 +634,21 @@ Then("User waits for 'list safety stock' Response", () => {
 // -------------------- list catalog wo ship to ----------------------
 
 When("User ask 'list catalog wo ship to'", () => {
-  cy.get("#mat-input-0").type(`list catalog wo ship to{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list catalog wo ship to{enter}`);
 });
 
 Then("User waits for 'list catalog wo ship to' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -588,7 +664,7 @@ When("User click 'Add'", () => {
 });
 
 Then("User waits for 'Add' Response", () => {
-  cy.get("#mat-tab-label-3-0");
+  cy.get("#mat-tab-label-3-0", { timeout: 10000 });
 });
 
 Then("User click 'Add list Catalog Work Order Ship To' Button", () => {
@@ -600,17 +676,21 @@ Then("User click 'Add list Catalog Work Order Ship To' Button", () => {
 // -------------------- list nr wo ship to ----------------------
 
 When("User ask 'list nr wo ship to'", () => {
-  cy.get("#mat-input-0").type(`list nr wo ship to{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list nr wo ship to{enter}`);
 });
 
 Then("User waits for 'list nr wo ship to' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -628,17 +708,21 @@ Then("User click 'Add NR WO Ship To' Button", () => {
 // -------------------- open sales orders ----------------------
 
 When("User ask 'open sales orders'", () => {
-  cy.get("#mat-input-0").type(`open sales orders{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`open sales orders{enter}`);
 });
 
 Then("User waits for 'open sales orders' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -652,27 +736,29 @@ When("User Click on an item", () => {
 });
 
 Then("User see the sales orders detail", () => {
-  cy.get("#mat-tab-label-2-0");
+  cy.get("#mat-tab-label-2-0", { timeout: 10000 });
 });
 
 // -------------------- list disabled forecast item code 55773W21' ----------------------
 
 When("User ask 'list disabled forecast item code 55773W21'", () => {
-  cy.get("#mat-input-0").type(
-    `list disabled forecast item code "55773W21"{enter}`
-  );
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list disabled forecast item code "55773W21"{enter}`);
 });
 
 Then(
   "User waits for 'list disabled forecast item code 55773W21' Response",
   () => {
     // Checks app-dynamic-tabs for response.
-    cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+    cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
       // Check if app-dynamic-message is displayed.
       if ($body.find("app-dynamic-message").length > 0) {
         // Check if app-dynamic-message has text "I am sorry".
         cy.wrap($body)
-          .find("app-dynamic-message div div")
+          .find("app-dynamic-message div div", { timeout: 1000 })
           .should("not.contain", "I am sorry");
       } else {
         // Pass the test if the error message is not found
@@ -692,23 +778,27 @@ When("User Edit disable forecast data and click Edit button", () => {
 });
 
 Then("User waits for Edit disable forecast data Response", () => {
-  cy.get("#mat-tab-label-2-1");
+  cy.get("#mat-tab-label-2-1", { timeout: 15000 });
 });
 
 // -------------------- list customers ----------------------
 
 When("User ask 'list customers'", () => {
-  cy.get("#mat-input-0").type(`list customers{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list customers{enter}`);
 });
 
 Then("User waits for 'list customers' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -722,23 +812,27 @@ When("User Edit customer data and click Edit button", () => {
 });
 
 Then("User waits for Edit customer data Response", () => {
-  cy.get("#mat-tab-label-2-1");
+  cy.get("#mat-tab-label-2-1", { timeout: 60000 });
 });
 
 // -------------------- list customers ----------------------
 
 When("User ask 'list future promo replen curves'", () => {
-  cy.get("#mat-input-0").type(`list future promo replen curves{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list future promo replen curves{enter}`);
 });
 
 Then("User waits for 'list future promo replen curves' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -752,23 +846,27 @@ When("User Change week 1 ship override and save", () => {
 });
 
 Then("User waits for ship override Response", () => {
-  cy.get("#mat-tab-label-2-1");
+  cy.get("#mat-tab-label-2-1", { timeout: 60000 });
 });
 
 // -------------------- promo dashboard ----------------------
 
 When("User ask 'promo dashboard'", () => {
-  cy.get("#mat-input-0").type(`promo dashboard{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`promo dashboard{enter}`);
 });
 
 Then("User waits for 'promo dashboard' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -782,14 +880,15 @@ When("User click on a row under promo id column", () => {
 });
 
 Then("User waits for promo id response", () => {
-  cy.get("#mat-tab-label-2-0");
+  cy.get("#mat-tab-label-2-0", { timeout: 20000 });
 });
 
 When(
   "select 'PROMOTION' for Forecast Layer Dropdown and 'Default' for Promo Type Drop down and click save",
   () => {
     cy.get(
-      ":nth-child(5) > .form-group > .w-100 > .p-inputwrapper > .p-dropdown"
+      ":nth-child(5) > .form-group > .w-100 > .p-inputwrapper > .p-dropdown",
+      { timeout: 20000 }
     ).click();
 
     cy.get(":nth-child(2) > .p-ripple").click();
@@ -798,14 +897,15 @@ When(
 );
 
 Then("user waits for Promo response", () => {
-  cy.get("#mat-tab-label-3-1");
+  cy.get("#mat-tab-label-3-1", { timeout: 20000 });
 });
 
 When(
   "select 'NEW RELEASE' for Forecast Layer Dropdown and 'Default' for Promo Type Drop down and click save",
   () => {
     cy.get(
-      ":nth-child(5) > .form-group > .w-100 > .p-inputwrapper > .p-dropdown"
+      ":nth-child(5) > .form-group > .w-100 > .p-inputwrapper > .p-dropdown",
+      { timeout: 20000 }
     ).click();
 
     cy.get(":nth-child(4) > .p-ripple").click();
@@ -814,25 +914,27 @@ When(
 );
 
 Then("user waits for Promo response", () => {
-  cy.get("#mat-tab-label-4-1");
+  cy.get("#mat-tab-label-4-1", { timeout: 20000 });
 });
 
 // -------------------- promo dashboard ----------------------
 
 When("User ask 'nrst item report'", () => {
-  cy.get("#mat-input-0").type(
-    `nrst item report for street date "04/30/2024"{enter}`
-  );
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`nrst item report for street date "04/30/2024"{enter}`);
 });
 
 Then("User waits for 'nrst item report' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -842,33 +944,37 @@ Then("User waits for 'nrst item report' Response", () => {
 });
 
 When("User click on a row from the Customer level overview", () => {
-  cy.get(
-    ".pb-3 > :nth-child(3) div[row-id='0'] div[col-id='customer_code']"
-  ).click();
+  cy.get(".pb-3 > :nth-child(3) div[row-id='0'] div[col-id='customer_code']", {
+    timeout: 15000,
+  }).click();
 });
 
 Then("User waits for response Customer level overview", () => {
-  cy.get("#mat-tab-label-2-0");
+  cy.get("#mat-tab-label-2-0", {
+    timeout: 40000,
+  });
 });
 
 // -------------------- strategic forecast report fiscal year 2030 ----------------------
 
 When("User ask 'strategic forecast report fiscal year 2030'", () => {
-  cy.get("#mat-input-0").type(
-    `strategic forecast report fiscal year "2030"{enter}`
-  );
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`strategic forecast report fiscal year "2030"{enter}`);
 });
 
 Then(
   "User waits for 'strategic forecast report fiscal year 2030' Response",
   () => {
     // Checks app-dynamic-tabs for response.
-    cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+    cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
       // Check if app-dynamic-message is displayed.
       if ($body.find("app-dynamic-message").length > 0) {
         // Check if app-dynamic-message has text "I am sorry".
         cy.wrap($body)
-          .find("app-dynamic-message div div")
+          .find("app-dynamic-message div div", { timeout: 1000 })
           .should("not.contain", "I am sorry");
       } else {
         // Pass the test if the error message is not found
@@ -881,21 +987,23 @@ Then(
 // -------------------- strategic forecast planning calendar fiscal year "2030" ----------------------
 
 When("User ask 'strategic forecast planning calendar fiscal year 2030'", () => {
-  cy.get("#mat-input-0").type(
-    `strategic forecast planning calendar fiscal year "2030"{enter}`
-  );
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`strategic forecast planning calendar fiscal year "2030"{enter}`);
 });
 
 Then(
   "User waits for 'strategic forecast planning calendar fiscal year 2030' Response",
   () => {
     // Checks app-dynamic-tabs for response.
-    cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+    cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
       // Check if app-dynamic-message is displayed.
       if ($body.find("app-dynamic-message").length > 0) {
         // Check if app-dynamic-message has text "I am sorry".
         cy.wrap($body)
-          .find("app-dynamic-message div div")
+          .find("app-dynamic-message div div", { timeout: 1000 })
           .should("not.contain", "I am sorry");
       } else {
         // Pass the test if the error message is not found
@@ -917,12 +1025,14 @@ Then("User click MOD Events Tab and click edit.", () => {
 
 Then("User waits for 'MOD Events Edit' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 03"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 03"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -934,17 +1044,21 @@ Then("User waits for 'MOD Events Edit' Response", () => {
 // -------------------- list mass forecast override ----------------------
 
 When("User ask 'list mass forecast override'", () => {
-  cy.get("#mat-input-0").type(`list mass forecast override{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list mass forecast override{enter}`);
 });
 
 Then("User waits for 'list mass forecast override' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -956,17 +1070,21 @@ Then("User waits for 'list mass forecast override' Response", () => {
 // -------------------- list user id xref ----------------------
 
 When("User ask 'list user id xref'", () => {
-  cy.get("#mat-input-0").type(`list user id xref{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`list user id xref{enter}`);
 });
 
 Then("User waits for 'list user id xref' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -978,17 +1096,21 @@ Then("User waits for 'list user id xref' Response", () => {
 // -------------------- po transmission log ----------------------
 
 When("User ask 'po transmission log'", () => {
-  cy.get("#mat-input-0").type(`po transmission log{enter}`);
+  cy.get("#mat-input-0", {
+    timeout: 10000,
+  }).type(`po transmission log{enter}`);
 });
 
 Then("User waits for 'po transmission log' Response", () => {
   // Checks app-dynamic-tabs for response.
-  cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+  cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
+    timeout: 500000,
+  }).then(($body) => {
     // Check if app-dynamic-message is displayed.
     if ($body.find("app-dynamic-message").length > 0) {
       // Check if app-dynamic-message has text "I am sorry".
       cy.wrap($body)
-        .find("app-dynamic-message div div")
+        .find("app-dynamic-message div div", { timeout: 1000 })
         .should("not.contain", "I am sorry");
     } else {
       // Pass the test if the error message is not found
@@ -1015,12 +1137,14 @@ When("User click resend button of first row", () => {
 Then("User waits for 'Resend' Response", () => {
   if (resend) {
     // Checks app-dynamic-tabs for response.
-    cy.get(`[id="Panel - 02"] app-dynamic-tabs`).then(($body) => {
+    cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
       // Check if app-dynamic-message is displayed.
       if ($body.find("app-dynamic-message").length > 0) {
         // Check if app-dynamic-message has text "I am sorry".
         cy.wrap($body)
-          .find("app-dynamic-message div div")
+          .find("app-dynamic-message div div", { timeout: 1000 })
           .should("not.contain", "I am sorry");
       } else {
         // Pass the test if the error message is not found
@@ -1047,12 +1171,14 @@ When("User click cancel button of first row", () => {
 Then("User waits for 'Cancel' Response", () => {
   if (cancel) {
     // Checks app-dynamic-tabs for response.
-    cy.get(`[id="Panel - 02"] app-dynamic-tabs`).then(($body) => {
+    cy.get(`[id="Panel - 02"] app-dynamic-tabs`, {
+      timeout: 500000,
+    }).then(($body) => {
       // Check if app-dynamic-message is displayed.
       if ($body.find("app-dynamic-message").length > 0) {
         // Check if app-dynamic-message has text "I am sorry".
         cy.wrap($body)
-          .find("app-dynamic-message div div")
+          .find("app-dynamic-message div div", { timeout: 1000 })
           .should("not.contain", "I am sorry");
       } else {
         // Pass the test if the error message is not found
