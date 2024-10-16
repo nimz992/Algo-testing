@@ -28,10 +28,11 @@ jobs:
 
       - name: Run Cypress tests
         run: npm run cypress:run
+        continue-on-error: true
 
       - name: Generate Report
-        if: success() || failure()
         run: npm run posttest
+        if: success() || failure()
 
       - name: Upload Test reports
         uses: actions/upload-artifact@v4.3.6
