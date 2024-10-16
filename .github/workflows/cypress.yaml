@@ -30,6 +30,7 @@ jobs:
         run: npm run cypress:run
 
       - name: Generate Report
+        if: success() || failure()
         run: npm run posttest
 
       - name: Upload Test reports
