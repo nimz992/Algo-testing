@@ -11,6 +11,7 @@ Given("User Login as SONY-DPIP", () => {
 Then("User waits for 'What's Trending' Response", () => {
   cy.title().should("eq", "Algo - Creative Intelligence");
   cy.url().should("include", "/home");
+
   cy.get(`[id="Panel - 00"] app-dynamic-tabs`, {
     timeout: 200000,
   });
@@ -28,6 +29,8 @@ When(`User enters Ask: {string}`, async (ASK) => {
 });
 
 Then("User checks for response", () => {
+  // https://algocoreapi-algocore-uat.algoplus.com/v1/messages/send
+
   cy.get(`[id="Panel - 01"] app-dynamic-tabs`, {
     timeout: 500000,
   }).then(($body) => {
