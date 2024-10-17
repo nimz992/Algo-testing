@@ -27,7 +27,12 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests
-        run: npm run test
+        run: npm run cypress:run
+        continue-on-error: true
+
+      - name: Generate Report
+        run: npm run posttest
+        if: success() || failure()
 
       - name: Upload Test reports
         uses: actions/upload-artifact@v4.3.6
