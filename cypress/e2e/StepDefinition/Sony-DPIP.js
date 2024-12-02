@@ -1,9 +1,13 @@
 import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 
 if (
-  Cypress.spec.name === "Sony-DPIP 1.feature" ||
-  Cypress.spec.name === "Sony-DPIP 2.feature" ||
-  Cypress.spec.name === "Sony-DPIP 3.feature"
+  Cypress.spec.name === "List Asks.feature" ||
+  Cypress.spec.name === "NSRT Ask.feature" ||
+  Cypress.spec.name === "PO Transmission Ask.feature" ||
+  Cypress.spec.name === "Promo Dashboard Ask.feature" ||
+  Cypress.spec.name === "Rmplan Ask.feature" ||
+  Cypress.spec.name === "Sales Orders Ask.feature" ||
+  Cypress.spec.name === "Strategic Ask.feature"
 ) {
   Given("User Login as Sony-DPIP", () => {
     cy.fixture("credential").then((user) => {
