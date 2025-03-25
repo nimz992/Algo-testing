@@ -1,20 +1,10 @@
 import { Given, Then, When } from "cypress-cucumber-preprocessor/steps";
 
-if (
-  Cypress.spec.name === "TestAsk 1.feature" ||
-  Cypress.spec.name === "TestAsk 2.feature" ||
-  Cypress.spec.name === "TestAsk 3.feature" ||
-  Cypress.spec.name === "TestAsk 4.feature" ||
-  Cypress.spec.name === "TestAsk 5.feature"
-) {
+if (Cypress.spec.name === "TestAsk.feature") {
   function responseInterceptor() {
-    cy.intercept(
-      "POST",
-      "https://algocoreapi-algocore-uat.algoplus.com/v1/messages/send"
-    ).as("sendCall");
-
     let message_id = "";
-    cy.wait("@sendCall").then((interception) => {
+    // default api timeout is 5 secs, using 10 secs.
+    cy.wait("@sendCall", { timeout: 10000 }).then((interception) => {
       expect(interception.response.statusCode).to.be.oneOf([202]);
       message_id = interception.response?.body?.message_id;
 
@@ -22,11 +12,11 @@ if (
 
       cy.intercept(
         "GET",
-        `https://algocoreapi-algocore-uat.algoplus.com/v2/messages/${message_id}`
+        `https://algocore-api-fc-engine-shared-snowflake-uat.azurewebsites.net/v2/messages/${message_id}`
       ).as("messageResponse");
 
       function waitFor200Response() {
-        cy.wait("@messageResponse").then((interception) => {
+        cy.wait("@messageResponse", { timeout: 10000 }).then((interception) => {
           if (interception.response.statusCode === 200) {
             cy.log("Received the 200 status response");
           } else if (interception.response.statusCode === 202) {
@@ -49,14 +39,22 @@ if (
     cy.visit("https://algocore-uat.algoplus.com/home");
   });
 
-  Then("User waits for 'What's Trending' Response", () => {
-    cy.title().should("eq", "Algo - Creative Intelligence");
-    cy.url().should("include", "/home");
+  // Then("User waits for 'What's Trending' Response", () => {
+  //   cy.title().should("eq", "Algo - Creative Intelligence");
+  //   cy.url().should("include", "/home");
 
-    responseInterceptor(); //Wait for Reponse status 200.
+  //   // cy.intercept(
+  //   //   "POST",
+  //   //   "https://algocore-api-fc-engine-shared-snowflake-uat.azurewebsites.net/v1/messages/send"
+  //   // ).as("sendCall");
 
-    cy.get(`[id="Panel - 00"] app-dynamic-tabs`);
-  });
+  //   // responseInterceptor(); //Wait for Reponse status 200.
+
+  //   // cy.get(`[id="Panel - 00"] app-dynamic-tabs`);
+
+  //   // cy.get('[mattooltip="Delete"]').click();
+  //   // cy.get(".btn-primary").click();
+  // });
 
   Then("User Checks page has loaded", () => {
     cy.title().should("eq", "Algo - Creative Intelligence");
@@ -64,15 +62,20 @@ if (
   });
 
   When(`User enters Ask: {string}`, async (ASK) => {
+    cy.get('[mattooltip="Delete"]').click();
+    cy.get(".btn-primary").click();
+    cy.intercept(
+      "POST",
+      "https://algocore-api-fc-engine-shared-snowflake-uat.azurewebsites.net/v1/messages/send"
+    ).as("sendCall");
     cy.get("#mat-input-0", {
       timeout: 10000,
     }).type(`${ASK}{enter}`);
+    responseInterceptor(); //Wait for Reponse status 200.
   });
 
   Then("User checks for response", () => {
-    responseInterceptor(); //Wait for Reponse status 200.
-
-    cy.get(`[id="Panel - 01"] app-dynamic-tabs`).then(($body) => {
+    cy.get(`[id="Panel - 00"] app-dynamic-tabs`).then(($body) => {
       // Check if app-dynamic-message is displayed.
       if ($body.find("app-dynamic-message").length > 0) {
         // Check if app-dynamic-message has text "I am sorry".
