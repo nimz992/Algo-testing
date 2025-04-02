@@ -12,7 +12,7 @@
 // -- This is a parent command --
 Cypress.Commands.add("loginAsSDS", (username, password) => {
   cy.session([username, password], () => {
-    cy.visit("https://algocore-uat.algoplus.com/_admin/Login");
+    cy.visit(Cypress.env('BASE_URL'));
     cy.get("#mat-input-0").clear().type(username);
     cy.get("#mat-input-1").clear().type(password);
     cy.get("#login").click();
@@ -23,7 +23,7 @@ Cypress.Commands.add("loginAsSDS", (username, password) => {
 
 Cypress.Commands.add("loginAsDPIP", (username, password) => {
   cy.session([username, password], () => {
-    cy.visit("https://algocore-uat.algoplus.com/_admin/Login");
+    cy.visit(Cypress.env('BASE_URL'));
     cy.get("#mat-input-0").clear().type(username);
     cy.get("#mat-input-1").clear().type(password);
     cy.get("#login").click();
@@ -34,7 +34,7 @@ Cypress.Commands.add("loginAsDPIP", (username, password) => {
 
 Cypress.Commands.add("loginAsMSFTDPIP", (username, password) => {
   cy.session([username, password], () => {
-    cy.visit("https://algocore-uat.algoplus.com/_admin/Login");
+    cy.visit(Cypress.env('BASE_URL'));
     cy.get("#mat-input-0").clear().type(username);
     cy.get("#mat-input-1").clear().type(password);
     cy.get("#login").click();

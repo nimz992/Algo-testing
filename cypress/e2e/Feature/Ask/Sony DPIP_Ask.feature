@@ -1,12 +1,14 @@
-Feature: Test Asks
+Feature: Test SONY-DPIP Asks
 
     Scenario: Login as SONY-DPIP
         Given User Login as SONY-DPIP
         Then User Checks page has loaded
+        Then User clears the pannel
 
     Scenario Outline: Testing Ask: <ASK>
         When User enters Ask: '<ASK>'
         Then User checks for response
+        Then User clears the pannel
 
         Examples:
             | ASK                                                                                                    |
