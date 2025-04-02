@@ -3,12 +3,11 @@ Feature: Test SONY-DPIP Asks
     Scenario: Login as SONY-DPIP
         Given User Login as SONY-DPIP
         Then User Checks page has loaded
-        Then User clears the pannel
 
     Scenario Outline: Testing Ask: <ASK>
+        Given User clears the pannel
         When User enters Ask: '<ASK>'
         Then User checks for response
-        Then User clears the pannel
 
         Examples:
             | ASK                                                                                                    |

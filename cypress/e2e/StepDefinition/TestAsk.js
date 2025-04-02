@@ -27,7 +27,7 @@ if (
     cy.url().should("include", "/home");
   });
 
-  Then("User clears the pannel", () => {
+  Given("User clears the pannel", () => {
     cy.get('[mattooltip="Delete"]').click();
     cy.get(".btn-primary").click();
   });
