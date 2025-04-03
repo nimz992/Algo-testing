@@ -5,7 +5,7 @@ on:
     branches:
       - "*"  # Runs on every push to any branch
   schedule:
-    - cron: "19 19 * * *"  # Runs every day at 12 AM Pakistan Time (UTC+5)
+    - cron: "30 20 * * *"  # Runs every day at 12 AM Pakistan Time (UTC+5)
   workflow_dispatch:  # Allows manual trigger
 
 permissions:
