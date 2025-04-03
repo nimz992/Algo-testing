@@ -129,7 +129,7 @@ Feature: Test SONY Asks
             | sales vs reporting facings 5/10/2024                                                                                                                            |
             | sales vs reporting facings 9/11/2024                                                                                                                            |
             | net sales vs returns                                                                                                                                            |
-            | sales vs returns                                                                                                                                                |
+            | net pos vs returns                                                                                                                                              |
             | pos vs returns                                                                                                                                                  |
             | returns vs net sales                                                                                                                                            |
             | returns vs net pos                                                                                                                                              |
