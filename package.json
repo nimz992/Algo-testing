@@ -28,5 +28,8 @@
       "filePrefix": "",
       "fileSuffix": ".cucumber"
     }
+  },
+  "dependencies": {
+    "cypress-dotenv": "^3.0.1"
   }
 }

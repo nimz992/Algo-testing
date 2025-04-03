@@ -3,8 +3,11 @@ name: Generating Cypress report
 on:
   push:
     branches:
-      - "*"
-      
+      - "*"  # Runs on every push to any branch
+  schedule:
+    - cron: "30 20 * * *"  # Runs every day at 12 AM Pakistan Time (UTC+5)
+  workflow_dispatch:  # Allows manual trigger
+
 permissions:
   contents: read
   actions: read
@@ -25,6 +28,13 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Create .env file
+        run: |
+          echo CYPRESS_BASE_URL=${{ secrets.CYPRESS_UAT_URL }} >> .env
+          echo CYPRESS_EMAIL=${{ secrets.CYPRESS_EMAIL }} >> .env
+          echo CYPRESS_PASSWORD=${{ secrets.CYPRESS_PASSWORD }} >> .env
+          echo CYPRESS_SNOWFLAKE_URL=${{ secrets.CYPRESS_SNOWFLAKE_UAT_URL }} >> .env
 
       - name: Run Cypress tests
         run: npm run cypress:run
