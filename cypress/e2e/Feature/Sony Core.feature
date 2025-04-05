@@ -4,7 +4,7 @@ Feature: Test SONY Asks
         Given User Login as SONY
         Then User Checks page has loaded
 
-    Scenario Outline: Testing Ask: <ASK>
+    Scenario Outline: Testing Ask - <ASK>
         Given User clears the pannel
         When User enters Ask: '<ASK>'
         Then User checks for response
