@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "cypress:open": "cypress open",
+    "start": "npx cypress open",
     "clean:reports": "if exist cypress\\reports rmdir /S/Q cypress\\reports",
     "pretest": "npm run clean:reports",
     "cypress:run": "cypress run",
