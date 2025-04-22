@@ -1,8 +1,7 @@
 name: Generating Cypress report
 
 on:
-  schedule:
-    - cron: "35 19 * * *"  # Runs every day at 12 AM Pakistan Time (UTC+5)
+  
   workflow_dispatch:  # Allows manual trigger
 
 permissions:
